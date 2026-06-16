@@ -63,6 +63,15 @@ sudo ./migrate.sh               # real run (prompts for mode)
 
 If you customised `database_path`, `node_db`, or `debug_logfile`, override the defaults with environment variables (`OLD_DATA_DIR`, `OLD_LOG_DIR`, `BACKUP_DIR`, and so on) or review the data step. The script also reads your real paths from the config and checks ownership before starting.
 
+## Compatibility
+
+- Targets Debian/Ubuntu (`apt`) and RHEL (`yum`) hosts.
+- Designed for migrating `rippled` 3.1.3 to `xrpld` 3.2.0, following the official guide.
+
+## License
+
+Released under the [MIT License](LICENSE).
+
 ## Disclaimer
 
 Provided as-is, with no warranty. Always run `--dry-run` first, keep an off-host backup, and test on a non-critical node before running on production infrastructure.

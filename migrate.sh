@@ -160,7 +160,7 @@ warn "${C_BLD}READ BEFORE CONTINUING${C_RST}"
 info "This migrates rippled -> xrpld on THIS host."
 info "Prerequisites you must have already done:"
 info "  • Updated the package-signing GPG key (steps 1-5 of the install guide)"
-info "  • Run apt-get update && apt-get upgrade (Debian) if appropriate"
+info "  • Run apt-get update && apt-get upgrade (Debian) or yum update (RHEL) if appropriate"
 info "Validator keys and node identity are IRREPLACEABLE. This script backs"
 info "them up locally, but YOU must copy the backup off this host."
 echo

@@ -45,7 +45,7 @@ sudo ./migrate.sh               # real run (prompts for mode)
 ## Modes
 
 - **keep** - full-history and large-history nodes. Leaves your ledger data in place and hands ownership to the `xrpld` user. Nothing is moved or deleted.
-- **resync** - validators and small-history nodes. Points `xrpld` at the new default paths and rebuilds the ledger from the network (minutes).
+- **resync** - validators and small-history nodes. Points `xrpld` at the new default paths and rebuilds the ledger from the network (minutes). Your node identity (`wallet.db`) is preserved.
 
 ## Safety model
 

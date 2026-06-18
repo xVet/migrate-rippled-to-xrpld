@@ -405,8 +405,18 @@ if [ "$MODE" = "resync" ]; then
   # The restored cfg almost certainly still references the OLD rippled paths.
   # Repoint them to the new xrpld defaults so the new user can read/write.
   repoint_cfg "$OLD_DATA_DIR" "$NEW_DATA_DIR" "$OLD_LOG_DIR" "$NEW_LOG_DIR"
-  # Make sure the fresh dirs exist and are owned correctly.
+  # Make sure the fresh dirs exist.
   run mkdir -p "$NEW_DATA_DIR/db" "$NEW_LOG_DIR"
+  # Preserve the node identity: restore wallet.db into the fresh db dir so the
+  # node keeps its key while only the ledger re-syncs. (Validators keep their
+  # validation identity regardless - it lives in the cfg's [validator_token].)
+  if [ -f "$BACKUP_DIR/wallet.db" ]; then
+    run cp -a "$BACKUP_DIR/wallet.db" "$NEW_DATA_DIR/db/wallet.db"
+    ok "Restored node identity (wallet.db) -> $NEW_DATA_DIR/db/"
+  else
+    warn "No wallet.db in backup - the node will generate a new identity."
+  fi
+  # Own everything (including the restored wallet.db) as xrpld.
   run chown -R xrpld:xrpld "$NEW_DATA_DIR" "$NEW_LOG_DIR"
   verify_cfg_paths
 
